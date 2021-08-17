@@ -1,0 +1,3 @@
+# JS-practice
+
+Practice exercises.
