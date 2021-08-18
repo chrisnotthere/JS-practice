@@ -1,0 +1,33 @@
+body {
+  background: rgb(204, 224, 233);
+}
+
+main {
+  width: 50%;
+  margin: auto;
+  margin-top: 10rem;
+  padding: 1.5rem;
+}
+
+form {
+  font: 1.2rem sans-serif;
+  max-width: 70%;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='number'],
+textarea,
+fieldset {
+  width: 100%;
+  border: 1px solid #333;
+  box-sizing: border-box;
+}
+
+input:invalid {
+  box-shadow: 0 0 1px 1px red;
+}
+
+input:focus:invalid {
+  box-shadow: none;
+}
