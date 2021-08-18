@@ -6,9 +6,12 @@ const countryInput = document.querySelector('#f2');
 const countryError = document.querySelector('#countryError');
 const postalInput = document.querySelector('#f3');
 const postalError = document.querySelector('#postalError');
+const postalRegExp = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
+const regex = /^\d{5}$/;
 
 emailInput.addEventListener('blur', validateEmail);
 countryInput.addEventListener('blur', validateCountry);
+postalInput.addEventListener('blur', validatePostal);
 
 
 
@@ -17,14 +20,17 @@ form.addEventListener('submit', function (event) {
 
   if(!emailInput.validity.valid) {
     // If it email isn't valid, we display an appropriate error message
-    //showError();
     validateEmail();
     // Then we prevent the form from being sent by canceling the event
     event.preventDefault();
   } else if(!countryInput.validity.valid) {
     // If it country isn't valid, display an error message
-    //showError();
     validateCountry();
+    // Then we prevent the form from being sent by canceling the event
+    event.preventDefault();
+  } else if(!postalInput.validity.valid) {
+    // If it postal isn't valid, display an error message
+    validatePostal();
     // Then we prevent the form from being sent by canceling the event
     event.preventDefault();
   }
@@ -82,5 +88,31 @@ function validateCountry(){
     countryError.className = 'error active';
   }
 
+}
+
+function validatePostal(){
+  let postalValue = postalInput.value
+  console.log(postalValue);
+  console.log(regex.test(postalValue));
+
+  if (postalInput.validity.valid) {
+    postalError.textContent = ''; 
+    postalError.className = 'error'; 
+  } else {
+    if(postalInput.validity.valueMissing) {
+      // If the field is empty,
+      postalError.textContent = 'Please enter a postal code.';
+    } else if(!regex.test(postalValue)){
+      postalError.textContent = 'must be at least 5 digits';
+    }
+    // else if(!postalRegExp.test(postalValue)) {
+    //   postalError.textContent = 'Invalid postal code.';
+    // } 
+
+    // Set the styling appropriately
+    postalError.className = 'error active';
+
+  }
+  
 }
 

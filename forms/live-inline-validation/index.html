@@ -26,8 +26,8 @@
 
         <p>
           <label for='f3'>What's your postal code?</label>
-          <input type='text' id='f3' name='postal' required
-          pattern='/^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i'/>
+          <input type='text' id='f3' name='postal' required 
+          pattern='/^\d{5}$/'/>
           <span id ='postalError' class='error' aria-live='polite' ></span>
         </p>
 
