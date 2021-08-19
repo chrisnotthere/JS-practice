@@ -21,14 +21,11 @@ textarea,
 fieldset {
   -webkit-appearance: none;
   appearance: none;
-
   width: 100%;
   border: 1px solid #333;
   margin: 0;
-
   font-family: inherit;
   font-size: 80%;
-
   box-sizing: border-box;
 }
 
@@ -57,4 +54,10 @@ input:focus:invalid {
 
 .error.active {
   padding: 0.3em;
+}
+
+.pwdInfo p {
+  color: red;
+  font-size: 0.9rem;
+  display: none;
 }
