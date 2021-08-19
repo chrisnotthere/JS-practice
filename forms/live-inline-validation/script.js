@@ -6,8 +6,6 @@ const countryInput = document.querySelector('#f2');
 const countryError = document.querySelector('#countryError');
 const postalInput = document.querySelector('#f3');
 const postalError = document.querySelector('#postalError');
-const postalRegExp = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
-const regex = /^\d{5}$/;
 
 emailInput.addEventListener('blur', validateEmail);
 countryInput.addEventListener('blur', validateCountry);
@@ -33,32 +31,31 @@ form.addEventListener('submit', function (event) {
     validatePostal();
     // Then we prevent the form from being sent by canceling the event
     event.preventDefault();
+  } else {
+    // success message if all validation tests pass
+    alert ('High five!');
   }
 
+  
 
 });
 
 function validateEmail(){
 
   if (emailInput.validity.valid) {
-    // In case there is an error message visible, if the field
-    // is valid, we remove the error message.
-    emailError.textContent = ''; // Reset the content of the message
+    // In case there is an error message visible in the field, remove the error message.
+    emailError.textContent = '';  // Reset the content of the message
     emailError.className = 'error'; // Reset the visual state of the message
   } else {
     // If there is still an error, show the correct error
-    //showError();
     if(emailInput.validity.valueMissing) {
       // If the field is empty,
-      // display the following error message.
       emailError.textContent = 'You need to enter an e-mail address.';
     } else if(emailInput.validity.typeMismatch) {
       // If the field doesn't contain an email address,
-      // display the following error message.
       emailError.textContent = 'Entered value needs to be an e-mail address.';
     } else if(emailInput.validity.tooShort) {
       // If the data is too short,
-      // display the following error message.
       emailError.textContent = `Email should be at least ${ emailInput.minLength } characters; you entered ${ emailInput.value.length }.`;
     }
     // Set the styling appropriately
@@ -67,8 +64,6 @@ function validateEmail(){
 }
 
 function validateCountry(){
-  let countryValue = countryInput.value
-  console.log(countryValue);
 
   if (countryInput.validity.valid) {
     countryError.textContent = ''; 
@@ -91,9 +86,6 @@ function validateCountry(){
 }
 
 function validatePostal(){
-  let postalValue = postalInput.value
-  console.log(postalValue);
-  console.log(regex.test(postalValue));
 
   if (postalInput.validity.valid) {
     postalError.textContent = ''; 
@@ -102,16 +94,13 @@ function validatePostal(){
     if(postalInput.validity.valueMissing) {
       // If the field is empty,
       postalError.textContent = 'Please enter a postal code.';
-    } else if(!regex.test(postalValue)){
-      postalError.textContent = 'must be at least 5 digits';
+    } 
+    // if field doesnt match regex pattern
+    else if(postalInput.validity.patternMismatch){
+      postalError.textContent = 'Invalid postal code';
     }
-    // else if(!postalRegExp.test(postalValue)) {
-    //   postalError.textContent = 'Invalid postal code.';
-    // } 
-
     // Set the styling appropriately
     postalError.className = 'error active';
-
   }
   
 }
