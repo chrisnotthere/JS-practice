@@ -10,63 +10,43 @@
   </head>
   <body>
     <main>
-       <form novalidate>   <!--stops form from showing own error messages -->
-        
+       <form novalidate>   <!--stops form from showing default error messages -->
         <p>
           <label for='f1'>What's your email?</label>
           <input type='email' id='f1' name='email' minlength='8' required />
           <span id='emailError' class='error' aria-live='polite'></span>
         </p>
-
         <p>
           <label for='f2'>What's your country?</label>
           <input type='text' id='f2' name='country' minlength='3' maxlength='12' required />
           <span id ='countryError' class='error' aria-live='polite' ></span>
         </p>
-
         <p>
           <label for='f3'>What's your postal code?</label>
           <input type='text' id='f3' name='postal' required 
-          pattern='/^\d{5}$/'/>
+          pattern='^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$' />
           <span id ='postalError' class='error' aria-live='polite' ></span>
         </p>
-
-
-
-
         <p>
           <label for='f4'>What's your password?</label>
-          <input type='password' id='f4' name='password' />
+          <input type='password' id='f4' name='password' minlength="8" maxlength="20" required 
+          pattern='(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$' />
         </p>
-
         <p>
           <label for='f5'>Confirm password</label>
-          <input type='password' id='f5' name='passwordConfirm' />
+          <input type='password' id='f5' name='passwordConfirm' required />
         </p>
-
-
         <p>
           <input type='submit' value='Submit' />
         </p>
+        <div class ='pwdInfo'>
+          <p>* password must contain 8-20 characters</p>
+          <p>at least 1 number</p>
+          <p>at least 1 special character (!@#$%^&*)</p>
+          <p>at least 1 uppercase and at least 1 lowercase character</p>
+        </div>
       </form>
     <main>
-
-      <script src='script.js' async defer></script>
-      <!-- <script>
-
-        function validateEmail(emailInput){
-          console.log(emailInput);
-          console.log(emailInput.value);
-        }
-
-
-        const emailInput = document.querySelector('#f1');
-
-        emailInput.addEventListener('change', validateEmail(emailInput));
-        //emailInput.addEventListener('keyup', validateEmail(emailInput));
-
-
-
-      </script> -->
+    <script src='script.js' async defer></script>
   </body>
 </html>
