@@ -31,10 +31,15 @@
           <label for='f4'>What's your password?</label>
           <input type='password' id='f4' name='password' minlength="8" maxlength="20" required 
           pattern='(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$' />
+          <br>
+          <span id ='passwordError' class='error' aria-live='polite' ></span>
         </p>
         <p>
           <label for='f5'>Confirm password</label>
-          <input type='password' id='f5' name='passwordConfirm' required />
+          <input type='password' id='f5' name='passwordConfirm' minlength="8" maxlength="20" required
+          pattern='(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$' />
+          <br>
+          <span id ='passwordConfirmError' class='error' aria-live='polite' ></span>
         </p>
         <p>
           <input type='submit' value='Submit' />

@@ -6,38 +6,51 @@ const countryInput = document.querySelector('#f2');
 const countryError = document.querySelector('#countryError');
 const postalInput = document.querySelector('#f3');
 const postalError = document.querySelector('#postalError');
+const passwordInput = document.querySelector('#f4');
+const passwordError = document.querySelector('#passwordError');
+const passwordConfirmInput = document.querySelector('#f5');
+const passwordConfirmError = document.querySelector('#passwordConfirmError');
+const pwdInfo = document.querySelector('.pwdInfo');
 
 emailInput.addEventListener('blur', validateEmail);
 countryInput.addEventListener('blur', validateCountry);
 postalInput.addEventListener('blur', validatePostal);
-
+passwordInput.addEventListener('blur', validatePassword);
+passwordConfirmInput.addEventListener('blur', validatePasswordConfirm);
 
 
 // check all inputs before submitting the form
 form.addEventListener('submit', function (event) {
 
   if(!emailInput.validity.valid) {
-    // If it email isn't valid, we display an appropriate error message
+    // If the email isn't valid, we display an appropriate error message
     validateEmail();
     // Then we prevent the form from being sent by canceling the event
     event.preventDefault();
   } else if(!countryInput.validity.valid) {
-    // If it country isn't valid, display an error message
+    // If the country isn't valid, display an error message
     validateCountry();
     // Then we prevent the form from being sent by canceling the event
     event.preventDefault();
   } else if(!postalInput.validity.valid) {
-    // If it postal isn't valid, display an error message
+    // If the postal isn't valid, display an error message
     validatePostal();
+    // Then we prevent the form from being sent by canceling the event
+    event.preventDefault();
+  } else if(!passwordInput.validity.valid){
+    // If the password isn't valid, display an error message
+    validatePassword();
+    // Then we prevent the form from being sent by canceling the event
+    event.preventDefault();
+  } else if(passwordInput.value !== passwordConfirmInput.value){
+    // If the two password fields dont match, display an error
+    validatePasswordConfirm();
     // Then we prevent the form from being sent by canceling the event
     event.preventDefault();
   } else {
     // success message if all validation tests pass
     alert ('High five!');
   }
-
-  
-
 });
 
 function validateEmail(){
@@ -71,7 +84,7 @@ function validateCountry(){
   } else {
     if(countryInput.validity.valueMissing) {
       // If the field is empty,
-      countryError.textContent = 'You need to enter an country.';
+      countryError.textContent = 'You need to enter a country.';
     } else if(countryInput.validity.tooShort) {
       // If the data is too short,
       countryError.textContent = `Country name should be at least ${ countryInput.minLength } characters; you entered ${ countryInput.value.length }.`;
@@ -82,7 +95,6 @@ function validateCountry(){
     // Set the styling appropriately
     countryError.className = 'error active';
   }
-
 }
 
 function validatePostal(){
@@ -102,6 +114,47 @@ function validatePostal(){
     // Set the styling appropriately
     postalError.className = 'error active';
   }
-  
 }
 
+function validatePassword(){
+
+  if (passwordInput.validity.valid) {
+    passwordError.textContent = ''; 
+    passwordError.className = 'error';
+    pwdInfo.style.display = 'none'; 
+  } else {
+    if(passwordInput.validity.valueMissing) {
+      // If the field is empty,
+      passwordError.textContent = 'Please enter a password.';
+    } 
+    // if field doesnt match regex pattern
+    else if(passwordInput.validity.patternMismatch){
+      passwordError.textContent = 'Invalid password, see password requirements';
+      //show password requirements
+      pwdInfo.style.display = 'block';
+    }
+    // Set the styling appropriately
+    passwordError.className = 'error active';
+  }
+}
+
+function validatePasswordConfirm(){
+
+  if (passwordConfirmInput.validity.valid && passwordConfirmInput.value === passwordInput.value) {
+    passwordConfirmError.textContent = ''; 
+    passwordConfirmError.className = 'error';
+  }
+  else {
+    if(passwordConfirmInput.validity.valueMissing) {
+      // If the field is empty,
+      passwordConfirmError.textContent = 'Please confirm your password.';
+    } 
+    else if (passwordConfirmInput.value !== passwordInput.value){
+      // if password fields dont match
+      passwordConfirmError.textContent = 'Passwords entered do not match';
+    }
+    // Set the styling appropriately
+    passwordConfirmError.className = 'error active';
+  }
+
+}

@@ -56,7 +56,7 @@ input:focus:invalid {
   padding: 0.3em;
 }
 
-.pwdInfo p {
+.pwdInfo {
   color: red;
   font-size: 0.9rem;
   display: none;
