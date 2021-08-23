@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>fetch API</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+
+    <button onclick="newCats()">Random Cats</button>
+    <br><br>
+    <input type="text" id='search' /> <button onclick="searchGiphy(document.querySelector('#search').value)">Search</button>
+    <br><br>
+    <img src="#">
+    <br><br>
+    <p id='errorMsg'></p>
+
+    <script>
+    
+    const img = document.querySelector('img');
+    const errorMsg = document.querySelector('#errorMsg');
+
+    function newCats(){
+      errorMsg.innerText = '';
+
+      fetch('https://api.giphy.com/v1/gifs/translate?api_key=X4MI33RDcU8IStLnRWLB6mEEoDviFfjZ&s=cats', {mode: 'cors'})
+        .then(response => response.json())
+        .then(response => img.src = response.data.images.original.url);   
+    }
+
+    newCats();
+
+    function searchGiphy(query){
+      errorMsg.innerText = '';
+
+      fetch(`https://api.giphy.com/v1/gifs/translate?api_key=X4MI33RDcU8IStLnRWLB6mEEoDviFfjZ&s=${query}`, {mode: 'cors'})
+        .then(response => response.json())
+        .then(response => img.src = response.data.images.original.url)
+        .catch(e => errorMsg.innerText = `There was an error: "${e}"`);
+    }
+
+    </script>
+  </body>
+</html>
