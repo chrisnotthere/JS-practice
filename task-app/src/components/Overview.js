@@ -1,31 +1,42 @@
+/* eslint-disable no-useless-constructor */
 // render our tasks
 
-import React from 'react';
+import React, { Component } from 'react';
 import DeleteBtn from './DeleteBtn';
 
-const Overview = (props) => {
-  const { tasks } = props;
+class Overview extends Component {
 
-// deleteTask(task){
-  //   this.props.delete(task);
-  // }
+  constructor(props){
+    super(props);
+    
+  }
+  
+  
+  // deleteTask(task){
+    //   this.props.delete(task);
+    // }
+    
+    render(props) {
+      
+    //const { tasks } = props;
 
-  return(
-    <ul>
-      {tasks.map((task) => {
+    return(
+      <ul>
+      {this.props.tasks.map((task) => {
         return (
         <li key={task.id}>
           {task.text} &emsp;   id:{task.myId} &emsp;
           <DeleteBtn 
             task={task}
-            tasks={tasks}
-            deleteTask={() => props.deleteTask(task)}  
+            tasks={this.props.tasks}
+            deleteTask={() => this.props.deleteTask()}  
           />
         </li>
         );
       })}
     </ul>
   );
+    }
 };
 
 export default Overview;

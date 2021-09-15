@@ -73,7 +73,7 @@ class App extends Component {
         <Overview 
           tasks={tasks} 
           task={task}
-          deleteTask={() => this.deleteTask(task)}
+          deleteTask={() => this.deleteTask()}
         />
       </div>
     );
