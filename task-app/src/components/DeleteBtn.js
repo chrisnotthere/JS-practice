@@ -7,13 +7,17 @@ class DeleteBtn extends Component{
     
   }
   
+  delete(task){
+    this.props.deleteTask(task);
+  }
 
   render() {
     
     return (
       <button
         className="deleteBtn"
-        onClick={() => this.props.deleteTask(this.props.task)
+        //onClick={() => this.props.deleteTask(this.props.task)
+        onClick={() => this.delete(this.props.task)
       }>
         Delete Task
       </button>
