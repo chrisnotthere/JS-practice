@@ -6,10 +6,6 @@ class DeleteBtn extends Component{
     super(props);
     
   }
-
-  // deleteTask(task){
-  //   this.props.delete(task);
-  // }
   
 
   render() {

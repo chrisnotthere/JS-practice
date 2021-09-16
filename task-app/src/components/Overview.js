@@ -11,15 +11,9 @@ class Overview extends Component {
     
   }
   
-  
-  // deleteTask(task){
-    //   this.props.delete(task);
-    // }
-    
-    render(props) {
-      
-    //const { tasks } = props;
 
+    render(props) {
+    
     return(
       <ul>
       {this.props.tasks.map((task) => {

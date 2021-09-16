@@ -15,9 +15,6 @@ class App extends Component {
       tasks: [],
     };
     
-    // this.deleteTask = this.deleteTask.bind(this);
-    // this.addTask = this.addTask.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange = (e) => {
@@ -39,17 +36,18 @@ class App extends Component {
         id: uniqid(),
         myId: this.state.tasks.length + 1,
       },
-    });
-    console.log(this.state.tasks)
+    },
+    () => console.log(this.state.tasks)
+    )
   };
 
   deleteTask = (task) => {
     console.log('task info...  ' + JSON.stringify(task));
     console.log('task id: ' + task.myId);
 
-    this.setState({
-      tasks: this.state.tasks.filter(li => li.id !== task.id),
-    });
+    this.setState((prevState) => ({
+      tasks: prevState.tasks.filter(li => li.myId !== task.myId),
+    }));
 
     console.log(this.state.tasks);
 
@@ -73,7 +71,7 @@ class App extends Component {
         <Overview 
           tasks={tasks} 
           task={task}
-          deleteTask={() => this.deleteTask()}
+          deleteTask={() => this.deleteTask(task)}
         />
       </div>
     );
