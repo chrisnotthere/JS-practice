@@ -14,6 +14,8 @@ class App extends Component {
     },
       tasks: [],
     };
+
+    //this.deleteTask = this.deleteTask.bind(this);
     
   }
 
@@ -41,7 +43,7 @@ class App extends Component {
     )
   };
 
-  deleteTask = (task) => {
+  deleteTask = (e, task) => {
     console.log('task info...  ' + JSON.stringify(task));
     console.log('task id: ' + task.myId);
 
@@ -50,6 +52,8 @@ class App extends Component {
     }));
 
     console.log(this.state.tasks);
+    console.log(e);
+    //console.log(e.target);
 
   }
 
@@ -71,7 +75,7 @@ class App extends Component {
         <Overview 
           tasks={tasks} 
           task={task}
-          deleteTask={() => this.deleteTask(task)}
+          deleteTask={(e) => this.deleteTask(e, task)}
         />
       </div>
     );

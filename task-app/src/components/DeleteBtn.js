@@ -7,8 +7,8 @@ class DeleteBtn extends Component{
     
   }
   
-  delete(task){
-    this.props.deleteTask(task);
+  delete(e, task){
+    this.props.deleteTask(e, task);
   }
 
   render() {
@@ -17,7 +17,7 @@ class DeleteBtn extends Component{
       <button
         className="deleteBtn"
         //onClick={() => this.props.deleteTask(this.props.task)
-        onClick={() => this.delete(this.props.task)
+        onClick={(e) => this.delete(e, this.props.task)
       }>
         Delete Task
       </button>
