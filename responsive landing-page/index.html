@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>This is a landing page!</title>
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <div class="overlay" id="overlay">
+      <h3>Searching now...</h3>
+    </div>
+    <div class="hero-bg">
+      <section class="top">
+
+        <header>
+          <a href="#">yummy.eats</a>
+        </header>
+
+        <h1><span>The Healthy</span> Eating Experience</h1>    
+        
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum error minus itaque atque molestiae hic ducimus nulla nam, id velit incidunt accusantium dignissimos</p>
+ 
+        <div class="form-container">
+          <form action="">
+
+            <div class="form-left">
+              <label for="city">Enter your city:</label>
+              <input type="text" name="city" id="city">
+              <p>Example: "San Diego"</p>
+            </div>
+
+            <input type="button" value="Find Food Now" id="cta-btn">
+
+          </form>
+        </div>
+      </section>
+    </div>
+
+    <section class="authentic">
+      
+      <div class="right-col">
+        <h2>Authentic. Awesome.</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati necessitatibus ab minus odit, quisquam totam optio quis laborum vitae eaque ipsum maiores consectetur corporis in cumque repudiandae illum excepturi. Corporis!</p>
+      </div>
+
+      <img src="images/food.jpg" alt="Picture of food in a bowl">
+
+    </section>
+
+    <script>
+
+      let btn = document.querySelector('#cta-btn');
+      let overlay = document.querySelector('#overlay');
+
+
+      btn.addEventListener('click', () => {
+        overlay.style.display = 'grid';
+        overlay.classList.add('animate-overlay');
+        setTimeout(() => {
+          overlay.classList.remove('animate-overlay')
+          overlay.style.display = 'none';
+        }, 3000)});
+
+    </script>
+  </body>
+</html>
